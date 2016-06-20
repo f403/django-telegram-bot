@@ -139,7 +139,7 @@ class Contact(models.Model):
     first_name = models.CharField(max_length=255, verbose_name=_("First name"))
     # Optionals
     last_name = models.CharField(max_length=255, verbose_name=_("Last name"))
-    user_id = models.ForeignKey(User, on_delete=models.DO_NOTHING, db_constraint=False, verbose_name=_("User"))
+    user_id = models.IntegerField(default=0, null=True, blank=True, verbose_name=_("Tg User ID"))
     class Meta:
         verbose_name = 'Contact'
         verbose_name_plural = 'Contacts'
@@ -183,7 +183,7 @@ class Message(models.Model):
     document = models.ForeignKey(Document, null=True, blank=True, verbose_name=_("Document"))
     photo = models.ManyToManyField(PhotoSize, blank=True, verbose_name=_("Photo"))
     sticker = models.ForeignKey(Sticker, null=True, blank=True, verbose_name=_("Sticker"))
-    vidoe = models.ForeignKey(Video, null=True, blank=True, verbose_name=_("Video"))
+    video = models.ForeignKey(Video, null=True, blank=True, verbose_name=_("Video"))
     voice = models.ForeignKey(Voice, null=True, blank=True, verbose_name=_("Voice"))
     caption = models.TextField(null=True, blank=True, verbose_name=_("Caption"))
     contact = models.ForeignKey(Contact, null=True, blank=True, verbose_name=_("Contact"))
